@@ -17,6 +17,7 @@ IMAGE_HEIGHT = 60
 IMAGE_WIDTH = 160
 MAX_CAPTCHA = 4
 
+# 把彩色图像转为灰度图像
 def convert2gray(img):
 	if len(img.shape) > 2:
 		gray = np.mean(img, -1)
@@ -25,6 +26,7 @@ def convert2gray(img):
 		return img
 
 CHAR_SET_LEN = 63
+# 文本转向量
 def text2vec(text):
 	text_len = len(text)
 	if text_len > MAX_CAPTCHA:
@@ -47,7 +49,7 @@ def text2vec(text):
 		idx = i * CHAR_SET_LEN + char2pos(c)
 		vector[idx] = 1
 	return vector
-
+# 向量转回文本
 def vec2text(vec):
 	char_pos = vec.nonzero()[0]
 	text=[]
